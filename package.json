@@ -14,5 +14,13 @@
   },
   "dependencies": {
     "readline-sync": "^1.4.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dimka-zvd/frontend-project-44.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dimka-zvd/frontend-project-44/issues"
+  },
+  "homepage": "https://github.com/Dimka-zvd/frontend-project-44#readme"
 }
