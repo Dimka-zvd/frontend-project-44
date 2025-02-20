@@ -32,11 +32,10 @@ const RandomNumbers = (quantity) => {
 export const LogicGame = (yes, no, logic, quantity) => {
     let i = 0
     let flag = true
-    while (i != 3) {
+    while (i !== 3) {
         const str = RandomNumbers(quantity)
         console.log('Question: ',str)
         let answer = readlineSync.question('Your answer: ')
-        console.log(answer, logic, eval(logic))
         if (eval(logic)) {
             console.log('Correct!')
             i += 1
