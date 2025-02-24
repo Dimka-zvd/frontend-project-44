@@ -11,8 +11,12 @@ const RandomNumbers = (quantity) => {
     let numbers = []
     let str = ''
     const znaki = ['+', '-', '*']
-    if(quantity < 3 || quantity % 2 === 0) {
+    if(quantity === 1) {
         return RandomNumberInRange(1,100).toFixed(0)
+    }
+    if(quantity === 2) {
+        str = str + RandomNumberInRange(1,100).toFixed(0) + ' ' + RandomNumberInRange(1,100).toFixed(0)
+        return str.split(' ').map(Number)
     }
     while(i < quantity - 1) {
         numbers.push(RandomNumberInRange(1,100).toFixed(0))
@@ -26,6 +30,19 @@ const RandomNumbers = (quantity) => {
         }
     }
     return str
+}
+
+const gcd = (str) => {
+    const newStr = str.map(Number)
+    let j = 1
+    let del = 0
+    while(j !== Math.max.apply(null,(newStr.map(Number)))) {
+        if(newStr.every((x) => x % j === 0)) {
+            del = j
+        }
+        j += 1
+    }
+    return del
 }
 
 
@@ -46,8 +63,10 @@ export const LogicGame = (yes, no, logic, quantity) => {
                 if(str % 2 !== 0) {
                     m = no
                 }
-            }else {
+            }else if(quantity === 3){
                 m = eval(str)
+            }else if(quantity  === 2){
+                m = gcd(RandomNumbers(quantity))
             }
             console.log("'" + answer + "'" + "is wrong answer ;(. Correct answer was '" + m + "'")
             flag = false
