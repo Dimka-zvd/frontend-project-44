@@ -1,6 +1,6 @@
 import { LogicGame } from "../src/index.js";
 
-const logic = '(Number(answer) === Number(gcd(RandomNumbers(quantity))))'
+const logic = '(Number(answer) === Number(gcd(str)))'
 
 console.log('What is the result of the expression?')
 

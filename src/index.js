@@ -2,62 +2,22 @@ import readlineSync from "readline-sync"
 
 import {name} from "../bin/brain-games.js"
 
+import gcd from './games/gcd.js'
+
+import * as prg from './games/progression.js'
+
+import { isPrime } from "./games/prime.js"
+
 const RandomNumberInRange = (min, max) => { // Рандомайзер
     return Math.random() * (max - min) + min;
 }
-
-const progression = () => {  // Прогрессия
-    const firstNumber = RandomNumberInRange(1,100).toFixed(0)
-    const progress = RandomNumberInRange(1,10).toFixed(0)
-    const quantityOfNumbers = RandomNumberInRange(5,10).toFixed(0)
-    const questionNumber = Number(RandomNumberInRange(0, quantityOfNumbers - 1).toFixed(0))
-    console.log(questionNumber)
-    let listOfProgression = []
-    if(questionNumber !== 0){
-        listOfProgression.push(Number(firstNumber))
-    }else{
-        listOfProgression.push('..')
-    }
-    if(questionNumber !== 1){
-        listOfProgression.push(Number(firstNumber) + Number(progress))
-    }else{
-        listOfProgression.push('..')
-    }
-    let i = 2
-    while(i < quantityOfNumbers){
-        if(i === questionNumber){
-            listOfProgression.push('..')
-        }else{
-            if(listOfProgression[i-1] === '..') {
-                listOfProgression.push(Number(listOfProgression[i-2]) + (Number(progress) * 2))
-            }else{
-                listOfProgression.push(Number(listOfProgression[i-1]) + Number(progress))
-            }
-        }
-        i += 1
-    }
-    return listOfProgression
-}
-
-const readOfProgression = (progression) => { 
-    const index = progression.indexOf('..')
-    if(index + 1 === progression.length - 1 || index === progression.length - 1){
-        return progression[index - 1] + (progression[index - 1] - progression[index - 2])
-    } else if(index - 1 === 0){
-        return progression[index + 1] - (progression[index + 2] - progression[index + 1])
-    }else {
-        return progression[index + 1] - (progression[index + 2] - progression[index + 1])
-    }
-}
-
-console.log(progression())
 
 const RandomNumbers = (quantity) => { // Часть логики. Выстраивает выражение, с которым будет работать вторая часть логики
     let i = 0 
     let numbers = []
     let str = ''
     const znaki = ['+', '-', '*']
-    if(quantity === 1) {
+    if(quantity === 1 || quantity === 11) {
         return RandomNumberInRange(1,100).toFixed(0)
     }
     if(quantity === 10){
@@ -81,35 +41,20 @@ const RandomNumbers = (quantity) => { // Часть логики. Выстраи
     return str
 }
 
-const gcd = (str) => { // Ищет наивысший делитель
-    const newStr = str.map(Number)
-    let j = 1
-    let del = 0
-    while(j !== Math.max.apply(null,(newStr.map(Number)))) {
-        if(newStr.every((x) => x % j === 0)) {
-            del = j
-        }
-        j += 1
-    }
-    return del
-}
-
-
 export const LogicGame = (yes, no, logic, quantity) => { // Вторая часть логики
     let i = 0
     let flag = true
     while (i !== 3) {
         let str = []
-        let str1 = ''
         if (quantity === 10){
-            str = progression()
+            str = prg.progression()
         }else{
             str = RandomNumbers(quantity)
         }
         if (Array.isArray(str) === true){
-            str1 = str.join(' ')
+            str = str.join(' ')
         }
-        console.log('Question: ',str1)
+        console.log('Question: ',str)
         let answer = readlineSync.question('Your answer: ')
         if (eval(logic)) {
             console.log('Correct!')
@@ -124,9 +69,15 @@ export const LogicGame = (yes, no, logic, quantity) => { // Вторая час�
             }else if(quantity === 3){
                 m = eval(str)
             }else if(quantity  === 2){
-                m = gcd(RandomNumbers(quantity))
+                m = gcd(str)
             }else if(quantity === 10){
-                m = readOfProgression(str)
+                m = prg.readOfProgression(str)
+            }else if(quantity === 11){
+                if(isPrime(str) === 'yes'){
+                    m = 'yes'
+                }else{
+                    m = 'no'
+                }
             }
             console.log("'" + answer + "'" + "is wrong answer ;(. Correct answer was '" + m + "'")
             flag = false
