@@ -1,13 +1,18 @@
-export const gcd = (str) => { // Ищет наивысший делитель
-    str = str.split(' ')
-    const newStr = str.map(Number)
-    let j = 1
-    let del = 0
-    while(j !== Math.max.apply(null,(newStr.map(Number)))) {
-        if(newStr.every((x) => x % j === 0)) {
-            del = j
-        }
-        j += 1
-    }
-    return del
+import logic from '../index.js'
+import RandomNumberInRange from '../utils.js'
+
+const text = 'Find the greatest common divisor of given numbers.'
+
+const getGcd = (num1, num2) => (num1 === 0 ? num2 : getGcd(num2 % num1, num1))
+
+const game = () => {
+  const num1 = RandomNumberInRange()
+  const num2 = RandomNumberInRange()
+  const question = `${num1} ${num2}`
+  const answer = `${getGcd(num1, num2)}`
+  return [question, answer]
+}
+
+export default function runGame() {
+  logic(text, game)
 }

@@ -1,44 +1,36 @@
-export const progression = () => {  // Прогрессия
-    const firstNumber = RandomNumberInRange(1,100).toFixed(0)
-    const progress = RandomNumberInRange(1,10).toFixed(0)
-    const quantityOfNumbers = RandomNumberInRange(5,10).toFixed(0)
-    const questionNumber = Number(RandomNumberInRange(0, quantityOfNumbers - 1).toFixed(0))
-    console.log(questionNumber)
-    let listOfProgression = []
-    if(questionNumber !== 0){
-        listOfProgression.push(Number(firstNumber))
-    }else{
-        listOfProgression.push('..')
-    }
-    if(questionNumber !== 1){
-        listOfProgression.push(Number(firstNumber) + Number(progress))
-    }else{
-        listOfProgression.push('..')
-    }
-    let i = 2
-    while(i < quantityOfNumbers){
-        if(i === questionNumber){
-            listOfProgression.push('..')
-        }else{
-            if(listOfProgression[i-1] === '..') {
-                listOfProgression.push(Number(listOfProgression[i-2]) + (Number(progress) * 2))
-            }else{
-                listOfProgression.push(Number(listOfProgression[i-1]) + Number(progress))
-            }
-        }
-        i += 1
-    }
-    return listOfProgression
+import logic from '../index.js'
+import RandomNumberInRange from '../utils.js'
+
+const text = 'What number is missing in the progression?'
+
+const getProgression = (start, diff, size) => {
+  const progressionArray = []
+  for (let i = 0; i < size; i += 1) {
+    progressionArray.push(start + diff * i)
+  }
+  return progressionArray;
 }
 
-export const readOfProgression = (progression) => { 
-    progression = progression.split(' ')
-    const index = progression.indexOf('..')
-    if(index + 1 === progression.length - 1 || index === progression.length - 1){
-        return progression[index - 1] + (progression[index - 1] - progression[index - 2])
-    } else if(index - 1 === 0){
-        return progression[index + 1] - (progression[index + 2] - progression[index + 1])
-    }else {
-        return progression[index + 1] - (progression[index + 2] - progression[index + 1])
+const game = () => {
+  const start = RandomNumberInRange()
+  const diff = RandomNumberInRange(1, 5)
+  const size = RandomNumberInRange(5, 10)
+
+  const genProgression = getProgression(start, diff, size);
+  const hiddenNum = RandomNumberInRange(0, genProgression.length - 1)
+  const progressionResult = []
+  for (let i = 0; i < genProgression.length; i += 1) {
+    if (i === hiddenNum) {
+      progressionResult.push('..')
+    } else {
+      progressionResult.push(genProgression[i])
     }
+  }
+  const question = progressionResult.join(' ')
+  const answer = `${genProgression[hiddenNum]}`
+  return [question, answer]
+};
+
+export default function runGame() {
+  logic(text, game)
 }
