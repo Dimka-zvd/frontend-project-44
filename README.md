@@ -16,8 +16,8 @@
 ```
 brain-progression
 Welcome to the Brain Game!
-May I have your name? Maksim
-Hello, Maksim!
+May I have your name? Den
+Hello, Den!
 What number is missing in the progression?
 Question: 14 .. 18 20 22 24 26 28
 Your answer: 16 # Пользователь вводит ответ
@@ -28,7 +28,7 @@ Correct!
 Question: 12 15 18 21 .. 27 30 33
 Your answer: 24 # Пользователь вводит ответ
 Correct!
-Congratulations, Maksim!
+Congratulations, Den!
 ```
 # Installation:
 Минимальные требования: node.js : 22+
