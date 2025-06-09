@@ -13,7 +13,7 @@ const isPrime = (n) => {
     if (n % i === 0) {
       return 'no'
     }
-    i +=1
+    i += 1
   }
   return 'yes'
 }
