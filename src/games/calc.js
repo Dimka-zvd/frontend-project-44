@@ -5,12 +5,15 @@ const text = 'What is the result of the expression?'
 const opers = ['+', '-', '*']
 
 const calculate = (num1, num2, oper) => {
-  if (oper === '+') {
-    return `${num1 + num2}` 
-  } else if (oper === '-') {
-    return `${num1 - num2}` 
-  } else if (oper === '*') {
-    return `${num1 * num2}` 
+  if (oper === '+') 
+  {
+    return `${num1 + num2}`
+  } else if (oper === '-') 
+  {
+    return `${num1 - num2}`
+  } else if (oper === '*') 
+  {
+    return `${num1 * num2}`
   }
 }
 

@@ -20,9 +20,11 @@ const game = () => {
   const hiddenNum = RandomNumberInRange(0, genProgression.length - 1)
   const progressionResult = []
   for (let i = 0; i < genProgression.length; i += 1) {
-    if (i === hiddenNum) {
-      progressionResult.push('..') 
-    } else {
+    if (i === hiddenNum) 
+    {
+      progressionResult.push('..')
+    } else 
+    {
       progressionResult.push(genProgression[i])
     }
   }
