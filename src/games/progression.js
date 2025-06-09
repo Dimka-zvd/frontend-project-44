@@ -21,8 +21,8 @@ const game = () => {
   const progressionResult = []
   for (let i = 0; i < genProgression.length; i += 1) {
     if (i === hiddenNum) {
-      progressionResult.push('..') }
-    else {
+      progressionResult.push('..') 
+    } else {
       progressionResult.push(genProgression[i])
     }
   }
