@@ -27,7 +27,7 @@ const game = () => {
     }
   }
   const question = progressionResult.join(' ')
-  const answer = `${genProgression[hiddenNum]}`
+  const answer = genProgression[hiddenNum]
   return [question, answer]
 };
 
