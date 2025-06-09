@@ -1,4 +1,4 @@
-/*eslint brace-style: "error"*/
+ /*eslint brace-style: "error"*/ 
 import logic from '../index.js'
 import RandomNumberInRange from '../utils.js'
 
