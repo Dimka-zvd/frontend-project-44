@@ -1,8 +1,22 @@
+import js from '@eslint/js'
 import globals from 'globals'
-import pluginJs from '@eslint/js'
+import { defineConfig } from 'eslint/config'
+import stylistic from '@stylistic/eslint-plugin'
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-  pluginJs.configs.recommended,
-]
+export default defineConfig([
+  {
+    plugins: {
+      '@stylistic': stylistic,
+    },
+    rules: {
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'never'],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      'no-console': 'off',
+      'import/extensions': 'off',
+    },
+  },
+  { files: ['/*.{js,mjs,cjs}'], plugins: { js }, extends: ['js/recommended'] },
+  { files: ['/*.{js,mjs,cjs}'], languageOptions: { globals: globals.node } },
+])
