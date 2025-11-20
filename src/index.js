@@ -1,4 +1,4 @@
- /*eslint brace-style: "error"*/ 
+/* eslint brace-style: "error" */
 import readlineSync from 'readline-sync'
 import username from './cli.js'
 
@@ -17,7 +17,8 @@ export default function logic(description, game) {
     const userAnswer = readlineSync.question('Your answer: ')
     if (userAnswer === answer) {
       console.log('Correct!')
-    } else {
+    } 
+    else {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'.`)
       console.log(`Let's try again, ${userName}!`)
       return

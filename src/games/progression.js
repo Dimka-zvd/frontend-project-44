@@ -1,4 +1,4 @@
- /*eslint brace-style: "error"*/ 
+/* eslint brace-style: "error" */
 import logic from '../index.js'
 import RandomNumberInRange from '../utils.js'
 
@@ -23,7 +23,8 @@ const game = () => {
   for (let i = 0; i < genProgression.length; i += 1) {
     if (i === hiddenNum) {
       progressionResult.push('..')
-    } else {
+    } 
+    else {
       progressionResult.push(genProgression[i])
     }
   }

@@ -8,9 +8,11 @@ const opers = ['+', '-', '*']
 const calculate = (num1, num2, oper) => {
   if (oper === '+') {
     return `${num1 + num2}`
-  } else if (oper === '-') {
+  } 
+  else if (oper === '-') {
     return `${num1 - num2}`
-  } else if (oper === '*') {
+  } 
+  else if (oper === '*') {
     return `${num1 * num2}`
   }
 }
